@@ -1,0 +1,61 @@
+---
+layout:     post
+title:      "爬取app信息"
+subtitle:   " \"手机app的爬虫\""
+date:       2018-10-20 12:00:00
+author:     "Kcaco"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - 爬虫
+    - python
+---
+
+> “Yeah It's on. ”
+
+## 实现方式
+1.下载Fiddler抓包工具，抓取手机APP数据包；  
+2.下载夜神模拟器模拟手机，也可用真机；  
+3.分析接口；  
+4.使用Python实现爬虫程序。
+
+## 工具
+- 手机(手机模拟器)
+- Fiddler
+
+
+## Fiddler
+
+1.下载[Fiddler](https://www.telerik.com/fiddler)
+
+2.安装HTTPS证书
+    &emsp;&emsp;手机上的应用很多涉及到个人信息，采用比较安全的HTTPS加密过，而fiddler默认只捕获http会话而不抓取HTTPS报文，导致打开fiddler后就打不开https网页（比如百度），解决办法：打开Fiddler->Tool->Fiddler Options->HTTPS，勾选上并Capture HTTPS CONNECTs（捕获 HTTPS 连接）和 Decrypt HTTPS traffic （HTTPS 请求解密），并安装证书（首次使用无证书，会弹出是否信任fiddler证书和安全提示，直接点击yes就行），重启Fiddler生效。
+    ![fiddler HTTPS配置](/img/2020-7-6/2.webp)
+
+3.允许手机远程连接
+    &emsp;&emsp;如果想要捕获手机上的通信数据，就需要手机连接上Fiddler代理，而Fiddler默认是不允许其他设备进行连接的，解决办法：点击 Fiddler->Tools -> Options，在 Connections 面板选中 Allow remote computers to connect 允许其他设备连接（此操作需重启Fiddler生效）。
+    ![允许远程接入](/img/2020-7-6/3.webp)
+
+4.查看IP地址
+    &emsp;电脑ip地址可通过cmd命令行输入ipconfig查询,网络连接信息中找到，或者最直观的方法是将鼠标置于fiddler右上角的online中即可显示电脑的ip地址。
+    ![查询IP](/img/2020-7-6/4.webp)
+
+## 手机配置
+
+1.需要在移动终端（手机或pad）与笔记本在同一网络下。
+
+2.设置手机的HTTP代理为手动，将服务器改为查询过的**电脑的IP地址**，端口为**8888**。
+    ![查询IP](/img/2020-7-6/5.webp)
+
+
+3.下载证书，使用浏览器代开*http://IP地址:8888*.
+    ![查询IP](/img/2020-7-6/6.webp)
+
+
+
+## 手机模拟器
+推荐夜神模拟器，配置方法与手机基本一致。
+
+
+
+
