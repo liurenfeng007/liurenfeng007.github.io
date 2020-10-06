@@ -1,10 +1,10 @@
 # Site settings
 title: KCACO Blog
 SEOTitle: 宸铄的博客 | KCACO Blog
-header-img: img/home-bg-art.jpg
+header-img: img/home-bg-01.jpg
 email: liuchenshuo007@gmail.com
-description: "自然语言学徒 | 宸铄，Machine learning，NLP，Deep learning | 这里是 @KCACO宸铄 的个人博客，与你一起发现更大的世界。"
-keyword: "宸铄, KCACO宸铄, KCACO,  @KCACO, 宸铄的博客, KCACO Blog, 博客, 个人网站, 自然语言, 机器学习，深度学习"
+description: "代码学徒 | 宸铄，Machine learning，NLP，Development | 这里是 @KCACO宸铄 的个人博客，与你一起发现更大的世界。"
+keyword: "宸铄, KCACO宸铄, KCACO,  @KCACO, 宸铄的博客, KCACO Blog, 博客, 个人网站, 客户端, 后端，深度学习"
 url: "https://kcaco.club"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
