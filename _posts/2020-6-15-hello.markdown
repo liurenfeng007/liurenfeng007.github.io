@@ -2,7 +2,7 @@
 layout:     post
 title:      "Hello"
 subtitle:   " \"Hello World, Hello Blog\""
-date:       2018-10-20 12:00:00
+date:       2020-6-15 12:00:00
 author:     "Kcaco"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
@@ -15,7 +15,7 @@ tags:
 
 Kcaco 的 Blog 就这么开通了。
 
-2020 年，Kcaco 总算有个地方可以好好写点东西了。
+2020 年，Kcaco 更换域名后最终换还是选择了黄玄的这个主题，在这个地方可以好好写点东西了。
 
 作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
 
@@ -27,10 +27,11 @@ Kcaco 的 Blog 就这么开通了。
 
 其优点非常明显：
 
-* **Markdown** 带来的优雅写作体验
+* **Markdown** 带来的优雅写作体验，本地使用Typora编辑体验极佳
 * 利用 GitHub Pages 的域名和免费无限空间，不用自己折腾主机
 	* 如果需要自定义域名，也只需要简单改改 DNS 加个 CNAME 就好了 
 * Jekyll 的自定制非常容易，基本就是个模版引擎
+    * 在博客文件夹下启动jekyll serve即可127.0.0.1:4000预览
 
 ---
 

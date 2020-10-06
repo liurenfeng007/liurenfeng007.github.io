@@ -3,4 +3,4 @@
 
 Hey，我是宸铄，多出没于[博客](https://kcaco.club)、[知乎](https://www.kcaco.com/liu-chen-shuo-60)、[Github](http://github.com/liurenfeng007)等地带，一起哈皮呦。
 
-华南理工大学在读研究生，
+华南理工大学软件研究生，即将入职新浪。
