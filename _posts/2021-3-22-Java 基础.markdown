@@ -1,0 +1,305 @@
+---
+layout:     post
+title:      "Java 基础"
+subtitle:   " \"Java面试宝典\""
+date:       2021-3-22 16:53:00
+author:     "Kcaco"
+header-img: "img/home_bg_cloud.jpg"
+catalog: true
+tags:
+    - Java
+    - 面试
+---
+
+# Java基础
+
+## JDK,JRE,JVM区别
+
+**JDK**包括**JRE**包括**JVM**
+
+JDK 是 Java Development Kit，包括JRE和其他工具（编译器javac）
+
+JRE是Java Runtime Environment，包括JVM和Java 类库，java 命令
+
+JVM是Java Virtual Machine，运行 **Java 字节码**的虚拟机。JVM 有针对不同系统的特定实现（Windows，Linux，macOS），目的是使用相同的字节码，它们都会给出相同的结果。
+
+## Java和C++区别
+
+都是面向对象的语言，都支持封装、继承和多态
+
+Java 不提供指针来直接访问内存，程序内存更加安全
+
+Java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多继承，但是接口可以多继承。
+
+Java 有自动内存管理机制，不需要程序员手动释放无用内存
+
+在 C 语言中，字符串或字符数组最后都会有一个额外的字符‘\0’来表示结束。但是，Java 语言中没有结束符这一概念。
+
+
+
+##  Java 面向对象编程三大特性
+
+* **封装**
+
+封装把一个对象的属性私有化，同时提供一些可以被外界访问的属性的方法，如果属性不想被外界访问，我们大可不必提供方法给外界访问。get,set方法。
+
+* **继承**
+
+继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。通过使用继承我们能够非常方便地复用以前的代码。extend、implement。super（）调用父类构造方法放第一行。
+
+* **多态**
+
+多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量到底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。Animal animal=new cat（）；。
+
+**（偶尔问四个，就是抽象）**
+
+
+
+## 多态的底层原理
+
+多态的底层实现是**动态绑定**，即在运行时才把方法调用与方法实现关联起来。Java对于动态绑定的实现主要依赖于方法表（方法的实际入口地址），通过继承和接口的多态实现有所不同。常量池在逻辑上可以分成多个表，其中就有方法表。
+
+继承：在执行某个方法时，在方法区中找到该类的方法表，再确认该方法在方法表中的偏移量，找到该方法后如果被重写则直接调用，否则认为没有重写父类该方法，这时会按照继承关系搜索父类的方法表中该偏移量对应的方法。 invokevirtual 。
+
+接口：Java 允许一个类实现多个接口，从某种意义上来说相当于多继承，这样同一个接口的的方法在不同类方法表中的位置就可能不一样了。所以不能通过偏移量的方法，而是通过搜索完整的方法表。invokeinterface。
+
+ 
+
+JVM 的方法调用指令有五个，分别是：
+
+invokestatic：调用静态方法；
+
+invokespecial：调用实例构造器<init>方法、私有方法和父类方法；
+
+invokevirtual：调用虚方法；
+
+invokeinterface：调用接口方法，运行时确定具体实现；
+
+invokedynamic：运行时动态解析所引用的方法，然后再执行，用于支持动态类型语言。
+
+invokestatic 和 invokespecial 用于静态绑定，invokevirtual 和 invokeinterface 用于动态绑定。
+
+[详解博客](<https://how2playlife.com/2019/09/23/23%E7%BB%A7%E6%89%BF%E3%80%81%E5%B0%81%E8%A3%85%E3%80%81%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/>)
+
+[详解视频](https://www.bilibili.com/video/BV18W411C7TC?from=search&seid=10795059915075159461)
+
+
+
+## 重写和重载
+
+方法重载
+
+多个方法名称一样，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。
+
+重写：
+
+重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。
+
+- 返回值类型、方法名、参数列表必须相同，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。
+- 如果父类方法访问修饰符为     private/final/static 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。
+- 构造方法无法被重写
+
+
+
+## 数据类型
+
+基本数据类型：byte/8、char/16、short/16、int/32、float/32、long/64、double/64、boolean/1
+
+货币类型：BigDecimal
+
+
+
+## 自动装箱、拆箱与包装类
+
+基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。
+
+- 装箱：将基本类型用它们对应的引用类型包装起来；
+- 拆箱：将包装类型转换为基本数据类型；
+
+包装类作用：
+
+* 编码过程中只接收对象的情况，比如List中只能存入对象，不能存入基本数据类型；
+
+* 方便类型之间的转换，比如String和int之间的转换可以通过int的包装类Integer来实现。
+
+**Integer使用“==“的比较范围[-128,127]**
+
+short 使用“==“的比较范围也是 [-128  127]
+
+浮点数在计算机中并不能精确的表示，所以在判断两个double类型的数时需要其他的手段（Double.doubleToLongBits()，转换成字符串）
+
+
+
+## String StringBuffer 和 StringBuilder 的区别
+
+可变性
+
+- String 不可变
+- StringBuffer 和 StringBuilder 可变
+
+线程安全
+
+- String 不可变，因此是线程安全的
+- StringBuilder 不是线程安全的
+- StringBuffer 是线程安全的，内部使用     synchronized 进行同步
+
+
+
+## 对象的通用方法
+
+```java
+public native int hashCode()
+
+public boolean equals(Object obj)
+
+protected native Object clone() throws CloneNotSupportedException
+
+public String toString()
+
+public final native Class<?> getClass()
+
+protected void finalize() throws Throwable {}
+
+public final native void notify()
+
+public final native void notifyAll()
+
+public final native void wait(long timeout) throws InterruptedException
+
+public final void wait(long timeout, int nanos) throws InterruptedException
+
+public final void wait() throws InterruptedException
+```
+
+
+
+## ==和equals
+
+== : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象(基本数据类型==比较的是值,引用数据类型==比较的是内存地址)。
+
+equals() : 它的作用也是判断两个对象是否相等。但它一般有两种使用情况：
+
+- 情况 1：类没有覆盖 equals() 方法。则通过     equals() 比较该类的两个对象时，等价于通过“==”比较这两个对象。
+- 情况 2：类覆盖了 equals() 方法。一般，我们都覆盖     equals() 方法来比较两个对象的内容是否相等；若它们的内容相等，则返回 true (即，认为这两个对象相等)。
+
+String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值。
+
+String 重写hashcode （h = 31 * h + val[i];）
+
+```java
+Integer x = new Integer(1);
+
+Integer y = new Integer(1);
+
+System.out.println(x.equals(y)); // true
+
+System.out.println(x == y);   // false
+```
+
+
+
+## hashcode与equals
+
+hashCode() 返回哈希值，而 equals() 是用来判断两个对象是否等价。等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价，这是因为计算哈希值具有随机性，两个值不同的对象可能计算出相同的哈希值。
+
+在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象哈希值也相等。
+
+hashcode计算，将个元素hashcode累加得到
+
+
+
+## clone
+
+想要调用clone，需要重写 clone() 。需要实现Cloneable 接口。否则会抛出： CloneNotSupportedException。
+
+浅拷贝：拷贝对象和原始对象的引用类型引用同一个对象。
+
+深拷贝：拷贝对象和原始对象的引用类型引用不同对象。
+
+
+
+## 抽象类和接口
+
+抽象类不能被实例化，只能被继承。
+
+抽象类不一定要有抽象方法，但抽象方法一定是被抽象类包含。
+
+接口的成员（字段 + 方法）默认都是 public 的，并且不允许定义为 private 或者 protected。
+
+接口的字段默认都是 static 和 final 的。
+
+不同：
+
+一个类可以实现多个接口，但只能实现一个抽象类。
+
+从设计层面来说，抽象是对类的抽象，是一种模板设计，而接口是对行为的抽象，是一种行为的规范。
+
+
+
+## error和exception
+
+Error(错误)：程序无法处理的问题。一般 JVM无法处理的，Java 虚拟机（JVM）一般会选择线程终止。根据error需要JVM调优。
+
+Exception(异常)：是程序本身可以处理的异常。
+
+- Checked Exception:这类异常如果没有try……catch也没有throws抛出，编译是通不过的。外部错误。
+- Unchecked Exception：会编译通过,一般是代码逻辑错误。修改代码。
+
+处理方式：
+
+try-catch-finally
+
+Throws
+
+自定义异常：
+
+格式：public class XXXException extends Exception| RuntimeException
+
+继承Exception，编译期异常，需要交给JVM（throws）或者自己处理（try-catch）
+
+继承RuntimeException，运行期异常，JVM处理
+
+
+
+## 反射
+
+反射就是在运行时才知道要操作的类是什么，并且可以在运行时通过获取Class对象获取类的完整构造，并调用对应的方法。
+
+步骤：
+
+```java
+获取类的 Class 对象实例
+
+Class clz = Class.forName("com.zhenai.api.Apple");
+
+根据 Class 对象实例获取 Constructor 对象
+
+Constructor appleConstructor = clz.getConstructor();
+
+使用 Constructor 对象的 newInstance 方法获取反射类对象
+
+Object appleObj = appleConstructor.newInstance();
+
+而如果要调用某一个方法，则需要经过下面的步骤：
+
+获取方法的 Method 对象
+
+Method setPriceMethod = clz.getMethod("setPrice", int.class);
+
+利用 invoke 方法调用方法
+
+setPriceMethod.invoke(appleObj, 14);
+```
+
+
+
+## 泛型
+
+- Java的泛型是如何工作的 ? 什么是类型擦除 ?
+
+这是一道更好的泛型面试题。泛型是通过类型擦除来实现的，编译器在编译时擦除了所有类型相关的信息，所以在运行时不存在任何类型相关的信息。例如List<String>在运行时仅用一个List来表示。
+
+- Array不可以使用泛型。
+- 什么是泛型中的限定通配符和非限定通配符 ?
+
+限定通配符对类型进行了限制。有两种限定通配符，一种是<? extends T>它通过确保类型必须是T的子类来设定类型的上界，另一种是<? super T>它通过确保类型必须是T的父类来设定类型的下界。
